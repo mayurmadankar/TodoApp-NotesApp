@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./NoteForm.css";
-import { addNote } from "../../redux/actions/noteActions";
+// import { addNote } from "../../redux/actions/noteActions";
+import { addNote } from "../../redux/reducers/noteReducer";
 import { useDispatch } from "react-redux";
 
 function NoteForm({ onCreateNote }) {

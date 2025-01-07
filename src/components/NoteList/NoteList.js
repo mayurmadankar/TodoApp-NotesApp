@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./NoteList.css";
-import { deleteNote } from "../../redux/actions/noteActions";
+// import { deleteNote } from "../../redux/actions/noteActions";
+import { deleteNote } from "../../redux/reducers/noteReducer";
 
 function NoteList() {
   // const notes=[];
