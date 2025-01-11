@@ -4,20 +4,24 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { reset } from "../../redux/reducers/notificationReducer";
 import "./ToDoForm.css";
-import { addTodo } from "../../redux/reducers/todoReducer";
+import { addTodoAsync } from "../../redux/reducers/todoReducer";
 import { notificationSelector } from "../../redux/reducers/notificationReducer";
 
 function ToDoForm() {
   const [todoText, setTodoText] = useState("");
-  const disptach = useDispatch();
+  const dispatch = useDispatch();
   const message = useSelector(notificationSelector);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    disptach(addTodo(todoText));
+    if (todoText.trim() === "") {
+      alert("Todo cannot be empty!");
+      return;
+    }
+    dispatch(addTodoAsync({ text: todoText, completed: false }));
     setTodoText("");
     setTimeout(() => {
-      disptach(reset());
+      dispatch(reset());
     }, 2000);
   };
 

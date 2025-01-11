@@ -1,9 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 // import { toggleTodo } from "../../redux/actions/todoActions";
-import { todoSelector, toggleTodo } from "../../redux/reducers/todoReducer";
+import {
+  getInitialStateAsync,
+  todoSelector,
+  toggleTodo
+} from "../../redux/reducers/todoReducer";
 import "./ToDoList.css";
 import { useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
+// import { setInitialState } from "../../redux/reducers/todoReducer";
 
 function ToDoList() {
   const todos = useSelector(todoSelector);
@@ -11,16 +16,17 @@ function ToDoList() {
   // const todos= store.getState().todos;
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3100/api/todos")
-      .then((response) => {
-        console.log("API response:", response.data);
-        // Assuming you have a Redux action like `setTodos`
-        // dispatch(setTodos(response.data));
-      })
-      .catch((error) => {
-        console.error("Error fetching todos:", error);
-      });
+    dispatch(getInitialStateAsync());
+    // axios
+    // .get("http://localhost:3100/api/todos")
+    // .then((response) => {
+    //   console.log("API response:", response.data);
+    //   // Assuming you have a Redux action like `setTodos`
+    //   dispatch(setInitialState(response.data));
+    // })
+    // .catch((error) => {
+    //   console.error("Error fetching todos:", error);
+    // });
   }, [dispatch]);
 
   return (
